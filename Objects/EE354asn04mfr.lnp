@@ -1,0 +1,4 @@
+".\Objects\STARTUP.obj",
+".\Objects\main.obj" 
+TO ".\Objects\EE354asn04mfr" 
+PRINT(".\Listings\EE354asn04mfr.m51") RAMSIZE(256) 

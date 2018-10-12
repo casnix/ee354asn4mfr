@@ -1,0 +1,125 @@
+C51 COMPILER V9.59.0.0   MAIN                                                              10/10/2018 13:51:31 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          // Matt Rienzo
+   2          // EE354 Assignment 10
+   3          // Oct. 10, 2018
+   4          // 
+   5          // Reads tilt data from accelerometer and lights up one of four LEDs corresponding to tilt 
+   6          // 
+   7          #include <at89c51cc03.h>      //  CC03 library file 
+   8          // 
+   9          
+  10          // 
+  11          void main(void);  // Entry point
+  12          void initializeBoard(void); // Sets up default state of pins and registers
+  13          void setupADC(unsigned char); // Sets up ADC for in-loop action
+  14          void initADC(unsigned char); // Set up initial ADC state
+  15          void clearInts(void); // Turn of interrupts
+  16          void clearLEDs(void); // I can clear the LEDs, but I can't seem to clear the crushing haze of anxiety from
+             - my mind
+  17          // 
+  18          // 
+  19          
+  20          void main(){  // entry point
+  21   1        unsigned char tmp;
+  22   1        unsigned int nondescriptVariableName;
+  23   1        
+  24   1        int loop = main;
+  25   1        int *floop = (int*)loop;
+  26   1        *floop();
+*** ERROR C211 IN LINE 26 OF main.c: call not to a function
+  27   1        
+  28   1        initializeBoard();
+  29   1        while(1){
+  30   2          setupADC(0x04); // Ch4 -- turn on the news!
+  31   2          
+  32   2          tmp = (ADCON & 0x10);
+  33   2          while(tmp != 0x10){ // Loop until we have completed reading from ADC
+  34   3            tmp = (ADCON & 0x10);
+  35   3          }
+  36   2          
+  37   2          // Get our 10bit ADC value
+  38   2          nondescriptVariableName = ((unsigned int)ADDH << 2) + ADDL;
+  39   2          
+  40   2          // Light up respective LED
+  41   2          if((nondescriptVariableName > 430) && (nondescriptVariableName <= 510)){
+  42   3            // Turn on LED 1
+  43   3            clearLEDs();
+  44   3            P0_7 = 0;
+  45   3            if(nondescriptVariableName > 493)
+  46   3              P0_6 = 0;
+  47   3          }else if((nondescriptVariableName > 510) && (nondescriptVariableName <= 620)){
+  48   3            clearLEDs();
+  49   3            P0_6 = 0;
+  50   3            if(nondescriptVariableName > 550)
+  51   3              P0_5 = 0;
+  52   3          }else if((nondescriptVariableName > 620) && (nondescriptVariableName <= 675)){
+C51 COMPILER V9.59.0.0   MAIN                                                              10/10/2018 13:51:31 PAGE 2   
+
+  53   3            // Turn on LED 3
+  54   3            clearLEDs();
+  55   3            P0_5 = 0;
+  56   3            if(nondescriptVariableName > 650)
+  57   3              P0_4 = 0;
+  58   3          }else if((nondescriptVariableName > 675) && (nondescriptVariableName <= 750)){
+  59   3            // Turn on LED 4
+  60   3            clearLEDs();
+  61   3            P0_4 = 0;
+  62   3          }
+  63   2          
+  64   2          ADCON &= 0xEF;
+  65   2        }
+  66   1      }
+  67          
+  68          // initializeBoard(void) - Sets up the board's initiale state
+  69          //-- args: none
+  70          //rr rets: none
+  71          void initializeBoard(){
+  72   1        // Raise LED pins to 1 so that LEDS are initially off
+  73   1        clearLEDs();
+  74   1        initADC(0x10); // P1.4 for ADC channel 4 (AN4)
+  75   1        clearInts();
+  76   1      }
+  77          
+  78          // setupADC(unsigned char channel) -- resets the ADC and starts reading from supplied channel
+  79          //-- args: byte `channel' where the 4 MSB are zero, for ADC channel
+  80          //rr rets: none
+  81          void setupADC(unsigned char channel){
+  82   1          ADCON &= 0xF8;
+  83   1          ADCON |= channel;
+  84   1          ADCON |= 0x20;
+  85   1          ADCON |= 0x08;
+  86   1      }
+  87          
+  88          // initADC(unsigned char channel) -- sets the ADC's initial state at the start of the program
+  89          //-- args: byte `channel' where the 4 MSB are zero, for ADC channel
+  90          //rr rets: none
+  91          void initADC(unsigned char channel){
+  92   1        ADCF = channel;
+  93   1        ADCON = 0x20;
+  94   1        ADCLK = 0x00;
+  95   1      }
+  96          
+  97          // clearInts(void) -- turns off interrupts
+  98          //-- args: none
+  99          //rr rets: none
+ 100          void clearInts(){
+ 101   1        EA = 0;
+ 102   1      }
+ 103          
+ 104          // clearLEDs(void) -- sets all LED ports to 1, turning off the LEDs
+ 105          //-- args: none
+ 106          //rr rets: none
+ 107          void clearLEDs(){
+ 108   1        P0 |= 0xF0;
+ 109   1      }
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  1 ERROR(S)

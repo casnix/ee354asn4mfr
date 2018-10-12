@@ -1,0 +1,206 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    10/10/2018  13:43:36  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\STARTUP.obj, .\Objects\main.obj TO .\Objects\EE354asn04mfr PRINT (.\Listings\EE354
+>> asn04mfr.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\STARTUP.obj (?C_STARTUP)
+  .\Objects\main.obj (MAIN)
+
+
+LINK MAP OF MODULE:  .\Objects\EE354asn04mfr (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0002H     UNIT         _DATA_GROUP_
+            IDATA   000AH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     00CFH     UNIT         ?PR?MAIN?MAIN
+            CODE    08CFH     000DH     UNIT         ?PR?_SETUPADC?MAIN
+            CODE    08DCH     000CH     UNIT         ?C_C51STARTUP
+            CODE    08E8H     000BH     UNIT         ?PR?INITIALIZEBOARD?MAIN
+            CODE    08F3H     0009H     UNIT         ?PR?_INITADC?MAIN
+            CODE    08FCH     0004H     UNIT         ?PR?CLEARLEDS?MAIN
+            CODE    0900H     0003H     UNIT         ?PR?CLEARINTS?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\EE354asn04mfr (?C_STARTUP)
+
+
+SEGMENT                            DATA_GROUP 
+  +--> CALLED SEGMENT            START    LENGTH
+------------------------------------------------
+?C_C51STARTUP                    -----    -----
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN                    0008H    0002H
+  +--> ?PR?INITIALIZEBOARD?MAIN
+  +--> ?PR?_SETUPADC?MAIN
+  +--> ?PR?CLEARLEDS?MAIN
+
+?PR?INITIALIZEBOARD?MAIN         -----    -----
+  +--> ?PR?CLEARLEDS?MAIN
+  +--> ?PR?_INITADC?MAIN
+  +--> ?PR?CLEARINTS?MAIN
+
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/10/2018  13:43:36  PAGE 2
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\EE354asn04mfr (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:08DCH         SEGMENT       ?C_C51STARTUP
+  I:000AH         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:08DFH         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:08DCH         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:08DCH         LINE#         133
+  C:08DEH         LINE#         134
+  C:08DFH         LINE#         135
+  C:08E0H         LINE#         136
+  C:08E2H         LINE#         185
+  C:08E5H         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:08F3H         PUBLIC        _initADC
+  D:0080H         PUBLIC        P0
+  B:00A8H.7       PUBLIC        EA
+  D:00F6H         PUBLIC        ADCF
+  D:00F5H         PUBLIC        ADDH
+  B:0080H.4       PUBLIC        P0_4
+  B:0080H.5       PUBLIC        P0_5
+  D:00F4H         PUBLIC        ADDL
+  B:0080H.6       PUBLIC        P0_6
+  B:0080H.7       PUBLIC        P0_7
+  C:08E8H         PUBLIC        initializeBoard
+  C:0800H         PUBLIC        main
+  C:0900H         PUBLIC        clearInts
+  C:08FCH         PUBLIC        clearLEDs
+  D:00F2H         PUBLIC        ADCLK
+  D:00F3H         PUBLIC        ADCON
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/10/2018  13:43:36  PAGE 3
+
+
+  C:08CFH         PUBLIC        _setupADC
+  -------         PROC          MAIN
+  -------         DO            
+  D:0007H         SYMBOL        tmp
+  D:0008H         SYMBOL        nondescriptVariableName
+  -------         ENDDO         
+  C:0800H         LINE#         20
+  C:0800H         LINE#         24
+  C:0806H         LINE#         25
+  C:0809H         LINE#         26
+  C:0809H         LINE#         27
+  C:080EH         LINE#         29
+  C:0810H         LINE#         30
+  C:0815H         LINE#         31
+  C:081AH         LINE#         32
+  C:081CH         LINE#         35
+  C:0830H         LINE#         38
+  C:0846H         LINE#         40
+  C:0849H         LINE#         41
+  C:084BH         LINE#         42
+  C:0856H         LINE#         43
+  C:0858H         LINE#         44
+  C:0870H         LINE#         45
+  C:0873H         LINE#         46
+  C:0875H         LINE#         47
+  C:0880H         LINE#         48
+  C:0882H         LINE#         49
+  C:089AH         LINE#         51
+  C:089DH         LINE#         52
+  C:089FH         LINE#         53
+  C:08AAH         LINE#         54
+  C:08ACH         LINE#         55
+  C:08C4H         LINE#         57
+  C:08C7H         LINE#         58
+  C:08C9H         LINE#         59
+  C:08C9H         LINE#         61
+  C:08CCH         LINE#         62
+  -------         ENDPROC       MAIN
+  -------         PROC          INITIALIZEBOARD
+  C:08E8H         LINE#         68
+  C:08E8H         LINE#         70
+  C:08EBH         LINE#         71
+  C:08F0H         LINE#         72
+  -------         ENDPROC       INITIALIZEBOARD
+  -------         PROC          _SETUPADC
+  D:0007H         SYMBOL        channel
+  C:08CFH         LINE#         78
+  C:08CFH         LINE#         79
+  C:08D2H         LINE#         80
+  C:08D5H         LINE#         81
+  C:08D8H         LINE#         82
+  C:08DBH         LINE#         83
+  -------         ENDPROC       _SETUPADC
+  -------         PROC          _INITADC
+  D:0007H         SYMBOL        channel
+  C:08F3H         LINE#         88
+  C:08F3H         LINE#         89
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/10/2018  13:43:36  PAGE 4
+
+
+  C:08F5H         LINE#         90
+  C:08F8H         LINE#         91
+  C:08FBH         LINE#         92
+  -------         ENDPROC       _INITADC
+  -------         PROC          CLEARINTS
+  C:0900H         LINE#         97
+  C:0900H         LINE#         98
+  C:0902H         LINE#         99
+  -------         ENDPROC       CLEARINTS
+  -------         PROC          CLEARLEDS
+  C:08FCH         LINE#         104
+  C:08FCH         LINE#         105
+  C:08FFH         LINE#         106
+  -------         ENDPROC       CLEARLEDS
+  -------         ENDMOD        MAIN
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0106H BYTE (12%) *
+******************************************************************************
+
+Program Size: data=11.0 xdata=0 code=262
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
